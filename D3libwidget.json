@@ -4,7 +4,7 @@
 	"name": "d3lib widget",
 	"description": "d3lib demo",
 	"newInstancePrefix": "d3lib",
-	"icon": "https://sylvainparcollet.github.io/amchartslib/amcharticon.png",
+	"icon": "https://sylvainparcollet.github.io/D3Lib/D3_Icon.png",
 	"vendor": "Karamba",
 	"eula": "EULA",
 	"license": "2.0",
@@ -12,7 +12,7 @@
 		{
 			"kind": "main",
 			"tag": "com-karamba-d3lib",
-			"url": "https://sylvainparcollet.github.io/amchartslib/amcharts.js",
+			"url": "https://sylvainparcollet.github.io/D3Lib/amcharts.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}
