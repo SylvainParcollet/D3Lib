@@ -12,7 +12,7 @@
 		{
 			"kind": "main",
 			"tag": "com-karamba-d3lib",
-			"url": "https://sylvainparcollet.github.io/D3Lib/amcharts.js",
+			"url": "https://sylvainparcollet.github.io/D3Lib/D3Lib.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}
