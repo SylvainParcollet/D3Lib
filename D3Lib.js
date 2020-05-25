@@ -98,13 +98,16 @@ var svg = d3.select("body").selectAll("div")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 // Load our data file…
-d3.csv("debt.csv", type, function(error, data) {
-  if (error) throw error;
+//d3.csv("debt.csv", type, function(error, data) {
+//  if (error) throw error;
+//var d = [{"Activity Date":"2019-04-07T06:23:49.000Z","Activity Name":"Lunch Ride","Activity Type":"Ride","Distance":16901.30078125,"Moving Time":4731}
 
+var d = [{"creditor":"Britain","debtor":"France","amount":22.4,"risk":3},{"creditor":"France","debtor":"Germany","amount":53.4,"risk":1},{"creditor":"Germany","debtor":"Britain","amount":321,"risk":1}];	 
+	 
   var countryByName = d3.map(),
       countryIndex = -1,
       countryByIndex = [];
-
+	    
   // Compute a unique index for each country.
   data.forEach(function(d) {
     if (countryByName.has(d.creditor)) d.creditor = countryByName.get(d.creditor);
@@ -112,7 +115,7 @@ d3.csv("debt.csv", type, function(error, data) {
     if (countryByName.has(d.debtor)) d.debtor = countryByName.get(d.debtor);
     else countryByName.set(d.debtor, d.debtor = {name: d.debtor, index: ++countryIndex});
     d.debtor.risk = d.risk;
-  });
+  }
 
   // Initialize a square matrix of debits and credits.
   for (var i = 0; i <= countryIndex; i++) {
@@ -186,14 +189,12 @@ function type(d) {
 function value() {
   return this.amount;
 }
-
-
     };	
 
     class D3main extends HTMLElement {
-        constructor() {
+            constructor() {
 	    console.log("-------------------------------------------------");	
-        console.log("constructor");
+            console.log("constructor");
 	    console.log("-------------------------------------------------");	
             super();
             shadowRoot = this.attachShadow({
@@ -214,7 +215,7 @@ function value() {
         }
 
         //Fired when the widget is added to the html DOM of the page
-		connectedCallback() {
+	    connectedCallback() {
             console.log("connectedCallback");
         }
 
@@ -275,30 +276,11 @@ function value() {
 		const div = document.createElement('div');
                 let divid = changedProperties.widgetName;
                 this._tagContainer = divid;
-                div.innerHTML = '<div id="chartdiv"></div>';
+                div.innerHTML = '<div id="d3chart"></div>';
                 shadowRoot.appendChild(div);
-				console.log(div);	
-				const css = document.createElement('div');
-				if (typeOfChart === "Sankey")
-				{
-					css.innerHTML = '<style>#chartdiv {margin:0 auto;width: 100%; height: 800px;overflow:hidden;}</style>'
-					console.log("@@@@@@@@ Sankey CSS  @@@@@@@@");		
-				}
-				else if (typeOfChart === "Map")
-				{
-					css.innerHTML = '<style>#chartdiv {max-width: 100%;height: 800px;background-color:#fbebdb;}</style>'
-					console.log("@@@@@@@@ Map css  @@@@@@@@");						
-				}
-				else if (typeOfChart === "Radar")
-				{
-					css.innerHTML = '<style>#chartdiv {max-width: 100%;width: 100%;height: 800px;background-color:#5f6062;}</style>'
-					console.log("@@@@@@@@ Radar css  @@@@@@@@");						
-				}
-				else				
-				{
-					css.innerHTML = '<style>#chartdiv {width: 100%; height: 800px;}</style>'
-					console.log("@@@@@@@@ XYChart CSS  @@@@@@@@");		
-				}
+		console.log(div);	
+		const css = document.createElement('div');
+		css.innerHTML = '<style>#d3chart {margin:0 auto;width: 100%; height: 800px;overflow:hidden;}</style>';
 		shadowRoot.appendChild(css);	
 		var mapcanvas_divstr = shadowRoot.getElementById("chartdiv");	
                 console.log(mapcanvas_divstr);	
@@ -324,42 +306,10 @@ function value() {
 		} else {		
 				console.log("**********///////********");
 				console.log("Type of chart : " + typeOfChart);
-				if (typeOfChart === "Sankey")
-				{
-					
-					console.log("************Sankey chart************");    
-					Sankeychartkaramba(Ar[0].div,"");
-				}
-				else if (typeOfChart === "Map")
-				{
-					console.log("************Map chart************");    
-					Mapkaramba(Ar[0].div,"");	
-				}
-				else if (typeOfChart === "Radar")
-				{	
-					console.log("************Radar chart************");    
-					Radarchartkaramba(Ar[0].div,"");
-				}
-				else
-				{	
-					console.log("************Lolipop chart ************");    
-					console.log(typeOfChart);
-					var arraydata = [];
-					for (var i = 0; i < xvaluearr.length; i++) {
-						arraydata.push({
-							"category": xvaluearr[i],
-							"value": parseInt(yvaluearr[i])
-						});
-					}
-
-
-					console.log("************ARRAY DATA************");    
-					console.log(arraydata);
-					Amchartkaramba(Ar[0].div,JSON.stringify(arraydata));
-				}
-		}
-	
+				d3chart("","");
 			
+		}
+				
         }
 
 		//When the custom widget is removed from the canvas or the analytic application is closed
@@ -367,5 +317,5 @@ function value() {
 			console.log("onCustomWidgetDestroy");
         }
     }
-    customElements.define("com-karamba-amchart", Amchartmain);
+    customElements.define("com-karamba-d3lib", D3main);
 })();
