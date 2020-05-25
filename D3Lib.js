@@ -177,7 +177,7 @@ var d = [{"creditor":"Britain","debtor":"France","amount":22.4,"risk":3},{"credi
         .attr("xlink:href", function(d) { return "#group" + d.index + "-" + j; })
         .text(function(d) { return countryByIndex[d.index].name; });
   });
-});
+}
 
 function type(d) {
   d.amount = +d.amount;
