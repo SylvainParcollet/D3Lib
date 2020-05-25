@@ -1,0 +1,78 @@
+{
+	"id": "com.karamba.d3lib",
+	"version": "1.0.0",
+	"name": "d3lib widget",
+	"description": "d3lib demo",
+	"newInstancePrefix": "d3lib",
+	"icon": "https://sylvainparcollet.github.io/amchartslib/amcharticon.png",
+	"vendor": "Karamba",
+	"eula": "EULA",
+	"license": "2.0",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "com-karamba-d3lib",
+			"url": "https://sylvainparcollet.github.io/amchartslib/amcharts.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"charttype": {
+			"type": "string",
+			"description": "charttype",
+			"default": ""
+		},
+		"xvalue": {
+			"type": "string",
+			"description": "xvalue",
+			"default": ""
+		},
+    "yvalue": {
+			"type": "string",
+			"description": "yvalue",
+			"default": ""
+		},
+		"width": {
+			"type": "integer",
+			"default": 50
+		},
+		"height": {
+			"type": "integer",
+			"default": 50
+		}
+	},
+	"methods": {
+		"setValue": {
+			"description": "Params for chart.",
+			"parameters": [
+				{
+					"name": "newcharttype",
+					"type": "string",
+					"description": "Chart type"
+				},
+				{
+					"name": "newxvalue",
+					"type": "string",
+					"description": "xvalue"
+				},
+        {
+					"name": "newyvalue",
+					"type": "string",
+					"description": "yvalue"
+				}
+			],
+			"body": "this.charttype = newcharttype; this.xvalue = newxvalue;this.yvalue = newyvalue;"
+		},
+		"getCharttype": {
+			"returnType": "string",
+			"description": "Returns the type of chart.",
+			"body": "return this.charttype;"
+		}
+	},
+	"events": {
+		"onClick": {
+			"description": "Called when the user clicks the Box."
+		}
+	}
+}
