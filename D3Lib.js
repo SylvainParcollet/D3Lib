@@ -115,7 +115,7 @@ var d = [{"creditor":"Britain","debtor":"France","amount":22.4,"risk":3},{"credi
     if (countryByName.has(d.debtor)) d.debtor = countryByName.get(d.debtor);
     else countryByName.set(d.debtor, d.debtor = {name: d.debtor, index: ++countryIndex});
     d.debtor.risk = d.risk;
-  }
+  });
 
   // Initialize a square matrix of debits and credits.
   for (var i = 0; i <= countryIndex; i++) {
